@@ -163,9 +163,9 @@ export function useAuth() {
       }
 
       const data = await response.json();
-      console.log(data.data.user)
+      console.log(data.data.user);
       user.value = data.data.user;
-      console.log(user.value)
+      console.log(user.value);
       return true;
     } catch (err) {
       user.value = null;

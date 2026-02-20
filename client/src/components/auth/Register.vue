@@ -1,5 +1,7 @@
 <template>
-  <div class="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+  <div
+    class="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8"
+  >
     <div class="max-w-md w-full space-y-8">
       <div>
         <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
@@ -15,7 +17,7 @@
           </router-link>
         </p>
       </div>
-      
+
       <form class="mt-8 space-y-6" @submit.prevent="handleRegister">
         <div class="space-y-4">
           <div>
@@ -53,7 +55,10 @@
           </div>
 
           <div>
-            <label for="password" class="block text-sm font-medium text-gray-700">
+            <label
+              for="password"
+              class="block text-sm font-medium text-gray-700"
+            >
               Password
             </label>
             <input
@@ -68,12 +73,16 @@
               :disabled="isLoading"
             />
             <p class="mt-1 text-xs text-gray-500">
-              Must contain at least 6 characters with uppercase, lowercase, and number
+              Must contain at least 6 characters with uppercase, lowercase, and
+              number
             </p>
           </div>
 
           <div>
-            <label for="confirmPassword" class="block text-sm font-medium text-gray-700">
+            <label
+              for="confirmPassword"
+              class="block text-sm font-medium text-gray-700"
+            >
               Confirm Password
             </label>
             <input

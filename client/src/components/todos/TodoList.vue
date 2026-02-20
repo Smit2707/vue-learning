@@ -7,7 +7,7 @@
           <div>
             <h1 class="text-3xl font-bold text-gray-900">My Todos</h1>
             <p class="mt-1 text-sm text-gray-500">
-              Welcome back, {{ user?.name || "" }}!
+              Welcome back, {{ user?.name || '' }}!
             </p>
           </div>
           <button
@@ -131,7 +131,9 @@
       <!-- Todo List -->
       <div class="bg-white shadow rounded-lg">
         <div v-if="isLoading" class="p-8 text-center">
-          <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-indigo-600"></div>
+          <div
+            class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-indigo-600"
+          ></div>
           <p class="mt-2 text-gray-500">Loading todos...</p>
         </div>
 
@@ -151,7 +153,11 @@
           </svg>
           <h3 class="mt-2 text-sm font-medium text-gray-900">No todos found</h3>
           <p class="mt-1 text-sm text-gray-500">
-            {{ filter === 'completed' ? 'No completed todos yet' : 'Get started by adding a new todo' }}
+            {{
+              filter === 'completed'
+                ? 'No completed todos yet'
+                : 'Get started by adding a new todo'
+            }}
           </p>
         </div>
 
@@ -183,7 +189,7 @@ import TodoItem from './TodoItem.vue';
 // Use auth composable
 const { user, logout, error, clearError } = useAuth();
 
-console.log(user)
+console.log(user);
 
 // State
 const todos = ref([]);
@@ -198,8 +204,12 @@ const newTodo = reactive({
 });
 
 // Computed properties
-const activeTodos = computed(() => todos.value.filter(todo => !todo.completed));
-const completedTodos = computed(() => todos.value.filter(todo => todo.completed));
+const activeTodos = computed(() =>
+  todos.value.filter((todo) => !todo.completed)
+);
+const completedTodos = computed(() =>
+  todos.value.filter((todo) => todo.completed)
+);
 const filteredTodos = computed(() => {
   switch (filter.value) {
     case 'active':
@@ -299,10 +309,13 @@ const toggleTodo = async (todoId) => {
   try {
     clearError();
 
-    const response = await fetch(`${apiConfig.baseURL}/todos/${todoId}/toggle`, {
-      method: 'PATCH',
-      ...apiConfig,
-    });
+    const response = await fetch(
+      `${apiConfig.baseURL}/todos/${todoId}/toggle`,
+      {
+        method: 'PATCH',
+        ...apiConfig,
+      }
+    );
 
     const data = await response.json();
 
@@ -311,7 +324,9 @@ const toggleTodo = async (todoId) => {
     }
 
     // Update todo in the list
-    const todoIndex = todos.value.findIndex(todo => todo._id === todoId || todo.id === todoId);
+    const todoIndex = todos.value.findIndex(
+      (todo) => todo._id === todoId || todo.id === todoId
+    );
     if (todoIndex !== -1) {
       todos.value[todoIndex] = data.data.todo;
     }
@@ -342,7 +357,9 @@ const deleteTodo = async (todoId) => {
     }
 
     // Remove todo from the list
-    todos.value = todos.value.filter(todo => todo._id !== todoId && todo.id !== todoId);
+    todos.value = todos.value.filter(
+      (todo) => todo._id !== todoId && todo.id !== todoId
+    );
   } catch (err) {
     handleError(err, 'Failed to delete todo');
   }
