@@ -34,7 +34,7 @@ const app = express();
 app.use(helmet()); // Security headers
 app.use(
   cors({
-    origin: 'http://localhost:5173', // Frontend URL
+    origin: ['http://localhost:5173', 'http://localhost:3000'], // Frontend URL
     credentials: true, // Allow cookies
   })
 );
