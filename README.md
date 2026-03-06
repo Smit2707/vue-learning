@@ -1,13 +1,13 @@
 # Todo App
 
-A full-stack todo application with authentication built using Vue.js and Express.js.
+A full-stack todo application with authentication built using Nuxt.js and Express.js.
 
 ## Features
 
 - **Authentication**: User registration and login with JWT tokens stored in HTTP-only cookies
 - **Todo Management**: Create, read, update, and delete todos
 - **Filtering**: Filter todos by status (all, active, completed)
-- **Responsive Design**: Mobile-friendly UI built with Tailwind CSS
+- **Responsive Design**: Mobile-friendly UI built with Tailwind CSS v4
 - **API Documentation**: Interactive Swagger documentation
 - **Code Quality**: ESLint and Prettier configuration for consistent code style
 
@@ -22,9 +22,8 @@ A full-stack todo application with authentication built using Vue.js and Express
 - **ESLint & Prettier** for code quality
 
 ### Frontend
-- **Vue.js 3** with Composition API
-- **Vue Router** for navigation
-- **Tailwind CSS** for styling
+- **Nuxt.js 4** with Vue 3 Composition API
+- **Tailwind CSS v4** for styling
 - **Vite** for development and building
 - **ESLint & Prettier** for code quality
 
@@ -36,15 +35,16 @@ A full-stack todo application with authentication built using Vue.js and Express
 │   ├── controllers/       # Route controllers
 │   ├── middleware/        # Custom middleware
 │   ├── models/           # Database models
-│   ├── routes/           # API routes
 │   └── index.js          # Server entry point
-├── client/                # Frontend application
-│   ├── src/
+├── client-nuxt/           # Frontend application (Nuxt.js)
+│   ├── app/
 │   │   ├── components/   # Vue components
 │   │   ├── composables/  # Vue composables
-│   │   ├── router/       # Vue Router configuration
-│   │   └── main.js       # App entry point
-│   └── index.html        # HTML template
+│   │   ├── layouts/      # Nuxt layouts
+│   │   ├── pages/        # Nuxt pages
+│   │   └── assets/       # Static assets
+│   ├── nuxt.config.ts    # Nuxt configuration
+│   └── package.json      # Frontend dependencies
 └── README.md
 ```
 
@@ -72,7 +72,7 @@ A full-stack todo application with authentication built using Vue.js and Express
 
 3. **Install frontend dependencies**
    ```bash
-   cd ../client
+   cd ../client-nuxt
    npm install
    ```
 
@@ -110,12 +110,12 @@ A full-stack todo application with authentication built using Vue.js and Express
 
 3. **Start the frontend development server**
    ```bash
-   cd client
+   cd ../client-nuxt
    npm run dev
    ```
 
 4. **Access the application**
-   - Frontend: http://localhost:5173
+   - Frontend: http://localhost:3000
    - Backend API: http://localhost:5000
    - API Documentation: http://localhost:5000/api-docs
 
@@ -146,10 +146,11 @@ npm run lint:fix # Run ESLint with auto-fix
 npm run format   # Format code with Prettier
 ```
 
-### Frontend
+### Frontend (Nuxt.js)
 ```bash
 npm run dev      # Start development server
 npm run build    # Build for production
+npm run generate  # Generate static site
 npm run preview  # Preview production build
 npm run lint     # Run ESLint
 npm run format   # Format code with Prettier
@@ -208,7 +209,18 @@ This project is licensed under the ISC License.
    - Check that JWT_SECRET is properly set in .env
    - Verify cookie settings in the browser
 
-4. **Build Errors**
+4. **Tailwind CSS v4 Issues**
+   - Ensure `@tailwindcss/postcss` is installed
+   - Check PostCSS configuration in `nuxt.config.ts`
+   - Verify Tailwind CSS import in your CSS files
+
+5. **Nuxt.js Build Errors**
+   - Run `npm install` to ensure all dependencies are installed
+   - Check Node.js version compatibility (v18+ recommended)
+   - Clear .nuxt and node_modules and reinstall if needed
+   - Ensure proper TypeScript configuration if using .ts files
+
+6. **Build Errors**
    - Run `npm install` to ensure all dependencies are installed
    - Check Node.js version compatibility
    - Clear node_modules and reinstall if needed
